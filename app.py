@@ -17,7 +17,7 @@ def get_book():
                            book=mongo.db.book.find())
 
 
-"""@app.route('/add_book')
+@app.route('/add_book')
 def add_book():
     return render_template('addbook.html',
                            categories=mongo.db.categories.find())
@@ -93,7 +93,7 @@ def insert_category():
 
 @app.route('/add_category')
 def add_category():
-    return render_template('addcategory.html')"""
+    return render_template('addcategory.html')
 
 
 if __name__ == '__main__':
