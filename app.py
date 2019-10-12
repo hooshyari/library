@@ -16,7 +16,8 @@ app = Flask(__name__)
 #@app.route('/get_book')
 def get_book():
     #return render_template("book.html", book=mongo.db.book.find())
-    return render_template("book.html")
+    #return render_template("book.html")
+    return "hi"
 
 
 """ @app.route('/add_book')
