@@ -4,20 +4,22 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 
-app = Flask(__name__)
-app.config["MONGO_DBNAME"] = 'codeinstituteflask'
-app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://Mehrdad:leila110@cluster0-uaqnr.mongodb.net/codeinstituteflask?retryWrites=true&w=majority')
 
-mongo = PyMongo(app)
+app = Flask(__name__)
+#app.config["MONGO_DBNAME"] = 'codeinstituteflask'
+#app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://Mehrdad:leila110@cluster0-uaqnr.mongodb.net/codeinstituteflask?retryWrites=true&w=majority')
+#app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://Mehrdad:leila110@cluster0-uaqnr.mongodb.net/codeinstituteflask?retryWrites=true&w=majority')
+
+#Smongo = PyMongo(app)
 
 @app.route('/')
-@app.route('/get_book')
+#@app.route('/get_book')
 def get_book():
-    return render_template("book.html",
-                           book=mongo.db.book.find())
+    #return render_template("book.html", book=mongo.db.book.find())
+    return render_template("book.html")
 
 
-@app.route('/add_book')
+""" @app.route('/add_book')
 def add_book():
     return render_template('addbook.html',
                            categories=mongo.db.categories.find())
@@ -94,9 +96,12 @@ def insert_category():
 @app.route('/add_category')
 def add_category():
     return render_template('addcategory.html')
-
+"""
 
 if __name__ == '__main__':
-    app.run(host=os.environ.get('IP'),
-            port=int(os.environ.get('PORT')),
-            debug=True)
+    HOST = os.environ.get('SERVER_HOST', 'localhost')
+    try:
+        PORT = int(os.environ.get('SERVER_PORT', '5000'))
+    except ValueError:
+        PORT = 5000
+    app.run(HOST, PORT)

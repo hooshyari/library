@@ -1,9 +1,9 @@
 {% extends 'base.html'%} {% block content %}
 <div class="row">
     <ul class="collapsible" data-collapsible="accordion">
-        {% for book in books %}
-        <li>
-            <div class="collapsible-header">
+<!--         {% for book in books %}
+ -->        <li>
+          <!--   <div class="collapsible-header">
                 <div class="col s3">
                     <i class="material-icons">expand_more</i>
                     <a href="{{url_for('delete_book', book_id=book._id)}}" class="waves-effect waves-light btn btn_small">Done</a>
@@ -11,17 +11,18 @@
                     
                 </div>
                 <div class=" book_header col s9">
-                    <strong>{{book.book_name}}</strong> - {{book.due_date}}
+                    <strong>{{book.book_name}}</strong> - {{book.date}}
                 </div>
             </div>
             <div class="collapsible-body">
                 <span>
                 {{book.book_description}} 
             </span>
-            </div>
+            </div> -->
         </li>
-        {% endfor %}
-
+<!--         {% endfor %}
+ -->
     </ul>
+    <h1>jghkgjgkghghghghgfhfgfgf</h1>
 </div>
 {% endblock %}
