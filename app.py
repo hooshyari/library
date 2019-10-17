@@ -2,25 +2,43 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-
+import pymongo
+#import json
 
 
 app = Flask(__name__)
-#app.config["MONGO_DBNAME"] = 'codeinstituteflask'
-#app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://Mehrdad:leila110@cluster0-uaqnr.mongodb.net/codeinstituteflask?retryWrites=true&w=majority')
-#app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://Mehrdad:leila110@cluster0-uaqnr.mongodb.net/codeinstituteflask?retryWrites=true&w=majority')
+app.config["MONGO_DBNAME"] = 'codeinstituteflask'
+app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://Mehrdad:123456_Mm@cluster0-uaqnr.mongodb.net/codeinstituteflask?retryWrites=true&w=majority')
 
-#Smongo = PyMongo(app)
+
+mongo = PyMongo(app)
+
+
+#mongo = pymongo.MongoClient('mongodb+srv://Mehrdad:123456_Mm@cluster0-uaqnr.mongodb.net/codeinstituteflask?retryWrites=true&w=majority', maxPoolSize=50)
+#db = pymongo.database.Database(mongo, 'codeinstituteflask')
+#col = pymongo.collection.Collection(db, 'book')
+
+
+
 
 @app.route('/')
-#@app.route('/get_book')
+@app.route('/get_book')
 def get_book():
-    #return render_template("book.html", book=mongo.db.book.find())
-    #return render_template("book.html")
-    return "hi"
+    #mongo = pymongo.MongoClient('mongodb+srv://Mehrdad:123456_Mm@cluster0-uaqnr.mongodb.net/codeinstituteflask?retryWrites=true&w=majority', maxPoolSize=50)
+    #db = pymongo.database.Database(mongo, 'codeinstituteflask')
+    #col = pymongo.collection.Collection(db, 'book')
+    
+    #print("Trying to check connection.....")
+    book = mongo.db.book.find()
+    #print("The books are: ", book)
+    #for i in book:
+        #print("The item is:")
+        #Sprint(i)
+    return render_template("book.html", book = book)
 
 
-""" @app.route('/add_book')
+
+@app.route('/add_book')
 def add_book():
     return render_template('addbook.html',
                            categories=mongo.db.categories.find())
@@ -47,10 +65,11 @@ def update_book(book_id):
     book.update( {'_id': ObjectId(book_id)},
     {
         'book_name':request.form.get('book_name'),
-        'category_name':request.form.get('category_name'),
         'book_description': request.form.get('book_description'),
-        'due_date': request.form.get('due_date'),
-        'is_urgent':request.form.get('is_urgent')
+        'category_name':request.form.get('category_name'),
+        'book_author': request.form.get('book_author'),
+        'date': request.form.get('date'),
+        'instuck':request.form.get('instuck')
     })
     return redirect(url_for('get_book'))
 
@@ -97,7 +116,7 @@ def insert_category():
 @app.route('/add_category')
 def add_category():
     return render_template('addcategory.html')
-"""
+
 
 if __name__ == '__main__':
     HOST = os.environ.get('SERVER_HOST', 'localhost')

@@ -1,28 +1,28 @@
 {% extends 'base.html'%} {% block content %}
 <div class="row">
+    <h1>book</h1>
     <ul class="collapsible" data-collapsible="accordion">
-<!--         {% for book in books %}
- -->        <li>
-          <!--   <div class="collapsible-header">
-                <div class="col s3">
-                    <i class="material-icons">expand_more</i>
-                    <a href="{{url_for('delete_book', book_id=book._id)}}" class="waves-effect waves-light btn btn_small">Done</a>
+         {% for book in book %}
+         <li>
+             <div class="collapsible-header">
+                <div class="col s4">
+                    <i class="material-icons">expand_more</i><br/>
+                    <a href="{{url_for('delete_book', book_id=book._id)}}" class="waves-effect waves-light btn btn_small">Delete</a>
                     <a href="{{url_for('edit_book', book_id=book._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
                     
                 </div>
-                <div class=" book_header col s9">
-                    <strong>{{book.book_name}}</strong> - {{book.date}}
+                <div class=" book_header col s8">
+                    <strong>{{book.book_name}} </strong> - {{book.date}}
                 </div>
             </div>
             <div class="collapsible-body">
                 <span>
                 {{book.book_description}} 
             </span>
-            </div> -->
+            </div>
         </li>
-<!--         {% endfor %}
- -->
+         {% endfor %}
+
     </ul>
-    <h1>jghkgjgkghghghghgfhfgfgf</h1>
 </div>
 {% endblock %}
