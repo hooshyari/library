@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'codeinstituteflask'
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://Mehrdad:123456_Mm@cluster0-uaqnr.mongodb.net/codeinstituteflask?retryWrites=true&w=majority')
 
-
+#preparing mongo
 mongo = PyMongo(app)
 
 
